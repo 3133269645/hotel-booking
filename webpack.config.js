@@ -9,9 +9,13 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: "./build",//本地服务器所加载的页面所在的目录
-    historyApiFallback: true,//不跳转
-    inline: true//实时刷新
+    index: 'index.html',
+    contentBase: "./build",
+    historyApiFallback: true,
+    inline: true, // 这个选项启用了 HMR
+    port: 8545,
+    open: false,
+    hot: true, 
   },
   module: {
     rules: [
@@ -23,14 +27,15 @@ module.exports = {
         }
       },
       {
-          test: /\.css$/,
-          use: [
-                  {
-                        loader: "style-loader"
-                  },{
-                        loader: "css-loader"
-                  }
-              ]
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.html$/,
@@ -46,8 +51,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./app/index.html",
-      filename: "./index.html"
+      filename: "index.html" // 注意这里的路径应该是相对于输出目录的
     })
   ]
 };
-

@@ -1,52 +1,46 @@
-pragma solidity ^0.4.19;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
 
-contract Conference {  // can be killed, so the owner gets sent the money in the end
+contract Conference {
+    address public organizer;
+    mapping(address => uint) public registrantsPaid;
+    uint public numRegistrants;
+    uint public quota;
 
-	address public organizer;
-	mapping (address => uint) public registrantsPaid;
-	uint public numRegistrants;
-	uint public quota;
+    event Deposit(address indexed _from, uint _amount);
+    event Refund(address indexed _to, uint _amount);
 
-	event Deposit(address _from, uint _amount); // so you can log the event
-	event Refund(address _to, uint _amount); // so you can log the event
+    constructor() public {
+        organizer = msg.sender;
+        quota = 100;
+        numRegistrants = 0;
+    }
 
-	function Conference() {
-		organizer = msg.sender;		
-		quota = 100;
-		numRegistrants = 0;
-	}
+    function buyTicket() public payable {
+        require(numRegistrants < quota, "Registration is closed");
+        require(msg.value > 0, "Ticket price must be greater than zero");
+        registrantsPaid[msg.sender] = msg.value;
+        numRegistrants++;
+        emit Deposit(msg.sender, msg.value);
+    }
 
-	function buyTicket() public payable {
-		if (numRegistrants >= quota) { 
-			throw; // throw ensures funds will be returned
-		}
-		registrantsPaid[msg.sender] = msg.value;
-		numRegistrants++;
-		Deposit(msg.sender, msg.value);
-	}
+    function changeQuota(uint newQuota) public {
+        require(msg.sender == organizer, "Only the organizer can change the quota");
+        quota = newQuota;
+    }
 
-	function changeQuota(uint newquota) public {
-		if (msg.sender != organizer) { return; }
-		quota = newquota;
-	}
+    function refundTicket(address recipient, uint amount) public {
+        require(msg.sender == organizer, "Only the organizer can issue refunds");
+        require(registrantsPaid[recipient] == amount, "Invalid ticket purchase");
+        require(address(this).balance >= amount, "Insufficient balance for refund");
+        payable(recipient).transfer(amount);
+        emit Refund(recipient, amount);
+        registrantsPaid[recipient] = 0;
+        numRegistrants--;
+    }
 
-	function refundTicket(address recipient, uint amount) public {
-		if (msg.sender != organizer) { return; }
-		if (registrantsPaid[recipient] == amount) { 
-			address myAddress = this;
-			if (myAddress.balance >= amount) { 
-				recipient.send(amount);
-				Refund(recipient, amount);
-				registrantsPaid[recipient] = 0;
-				numRegistrants--;
-			}
-		}
-		return;
-	}
-
-	function destroy() {
-		if (msg.sender == organizer) { // without this funds could be locked in the contract forever!
-			suicide(organizer);
-		}
-	}
+    function destroy() public {
+        require(msg.sender == organizer, "Only the organizer can destroy the contract");
+        selfdestruct(payable(organizer));
+    }
 }

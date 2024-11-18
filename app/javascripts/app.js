@@ -7,8 +7,6 @@ import conference_artifacts from '../../build/contracts/Conference.json'
 var accounts, sim;
 var Conference = contract(conference_artifacts);
 
-
-
 window.addEventListener('load', function() {
 	//alert("aaaaa");
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
@@ -26,8 +24,7 @@ window.addEventListener('load', function() {
     App.start();
 
     $("#changeQuota").click(function() {
-        var newquota = $("#confQuota").val();
-        App.changeQuota(newquota);
+        window.location.href = "/bin/conference/build/booking.html"
     });
 
     // Wire up the UI elements
@@ -118,3 +115,7 @@ checkValues: function() {
     });
    }
 };//loop for main
+// HMR - Hot Module Replacement
+if (module.hot) {
+    module.hot.accept();
+  }

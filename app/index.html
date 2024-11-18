@@ -1,29 +1,196 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Conference DApp2</title>
-  <link href='https://fonts.loli.net/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <title>Hotel Booking</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>  
   <script src="./app.js"></script>
+  <style>
+    body {
+      background-image: url('https://img95.699pic.com/photo/40141/8282.gif_wh860.gif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 5em;
+      margin: 2em 0;
+      color: yellow;
+    }
+    .welcome-text {
+      font-size: 4em; /* 字体大小 */
+      margin: 0.5em 0; /* 外边距 */
+      display: flex; /* 使用 Flexbox 布局 */
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      font-family: 'Lato', sans-serif; /* 字体 */
+      font-weight: 700; /* 字体加粗 */
+      color: #fff; /* 字体颜色为白色 */
+  }
+    .section {
+      font-size: 1.8em;
+      margin: 0.5em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    input[type="text"], button {
+      font-size: 3em;
+      margin-left: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 50px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      background-image: linear-gradient(to right, #3f51b5, #5c6773);
+      transition: background-image 0.3s ease;
+      cursor: pointer;
+    }
+    button:hover {
+      background-image: linear-gradient(to left, #3f51b5, #5c6773);
+    }
+    /* 特效样式 */
+    .wave {
+      font-family: 'Cabin Condensed', sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 5.5em;
+      color: transparent;
+      background-image: linear-gradient(45deg, rgb(255, 255, 255), rgb(248, 7, 7));
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      animation: wave-animation 2s infinite linear, loading-animation 10s infinite linear alternate;
+    }
+    @keyframes wave-animation {
+      0% { background-position: 0 bottom; }
+      100% { background-position: 400px bottom; }
+    }
+    @keyframes loading-animation {
+      0% { background-size: 200px 0px; }
+      100% { background-size: 200px 200px; }
+    }
+    /* 按钮特效样式 */
+    .button-container {
+      position: relative;
+      width: 200px;
+      height: 70px;
+      margin-top: 6vh;
+      overflow: hidden;
+      border: 1px solid;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      transition: 0.5s;
+      letter-spacing: 1px;
+      border-radius: 8px;
+      display: flex; /* 使用 Flexbox 布局 */
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+}
+
+button.entry {
+  width: 100%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  background: #000;
+  -webkit-mask: url('https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png');
+  mask: url('https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png');
+  -webkit-mask-size: 2300% 100%;
+  mask-size: 2300% 100%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  -webkit-animation: ani2 0.4s steps(11) forwards; /* 减少持续时间和步数 */
+  animation: ani2 0.4s steps(11) forwards; /* 减少持续时间和步数 */
+  transition: transform 0.3s ease;
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+button.entry:hover {
+  -webkit-animation: ani 0.4s steps(11) forwards; /* 减少持续时间和步数 */
+  animation: ani 0.4s steps(11) forwards; /* 减少持续时间和步数 */
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+    @-webkit-keyframes ani {
+      from {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+      }
+      to {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+      }
+    }
+    @keyframes ani {
+      from {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+      }
+      to {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+      }
+    }
+    @-webkit-keyframes ani2 {
+      from {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+      }
+      to {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+      }
+    }
+    @keyframes ani2 {
+      from {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+      }
+      to {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+      }
+    }
+    a {
+      color: #00ff95;
+    }
+  </style>
 </head>
 <body>
-  <h1>Conference DApp</h1>
-  <div class="section">
-    Contract deployed at: <div id="confAddress"></div>
+  <h1 class="wave">Hotel Booking</h1>
+  <div class="welcome-text">Welcome here, you can begin your journey!</div>
+  <div class="button-container">
+    <button class="entry" id="changeQuota">Entry</button>
   </div>
   <div class="section">
-    Organizer: <input type="text" id="confOrganizer" />
+    Hotel numbers: <span id="numRegistrants">100</span>
   </div>
-  <div class="section">
-    Quota: <input type="text" id="confQuota" />
-      <button id="changeQuota">Change</button>
-      <span id="changeQuotaResult"></span>
-  </div>
-  <div class="section">
-    Registrants: <span id="numRegistrants">0</span>
-  </div>
-
+  <div id="bookingContent"></div>
   <hr/>
-
+  <script>
+    document.getElementById('changeQuota').addEventListener('click', function() {
+      window.location.href = 'http://127.0.0.1:8545/booking.html';
+    });
+  </script>
+  <hr/>
 </body>
-</html> 
+</html>
