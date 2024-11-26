@@ -13,7 +13,7 @@ module.exports = {
     contentBase: "./build",
     historyApiFallback: true,
     inline: true, // 这个选项启用了 HMR
-    port: 8545,
+    port: 8080,
     open: false,
     hot: true, 
   },
