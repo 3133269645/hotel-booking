@@ -1,25 +1,39 @@
-import Web3 from 'web3';
-import contract from 'truffle-contract';
+import "../stylesheets/app.css";
+import {  default as Web3 } from 'web3';
+import {  default as contract } from 'truffle-contract';
+
 import conference_artifacts from '../../build/contracts/Conference.json'
 
 var accounts, sim;
 var Conference = contract(conference_artifacts);
 
+
+
 window.addEventListener('load', function() {
+	//alert("aaaaa");
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined') {
+        console.warn("Using web3 detected from external source. If you find that your accounts don't appear or you have 0 MetaCoin, ensure you've configured that source properly. If using MetaMask, see the following link. Feel free to delete this warning. :) http://truffleframework.com/tutorials/truffle-and-metamask")
         // Use Mist/MetaMask's provider
         window.web3 = new Web3(web3.currentProvider);
     } else {
-        // Fallback to localhost if no Web3 injection
-        window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8546"));
+        console.warn("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
+        // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+        window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 
     Conference.setProvider(web3.currentProvider);
     App.start();
+
+    $("#changeQuota").click(function() {
+        var newquota = $("#confQuota").val();
+        App.changeQuota(newquota);
+    });
+
+    // Wire up the UI elements
 });
 
-window.App = {
+window.App = { //where to close
     start: function() {
         var self = this;
 
@@ -33,77 +47,74 @@ window.App = {
                 alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
                 return;
             }
-            accounts = accs;
+ accounts = accs;
+//$("#tentantAddress").html(getBalance(accounts[0])); //prints balance
 
+            //console.log(accounts);
             self.initializeConference();
         });
     },
 
     initializeConference: function() {
         var self = this;
-
+	
         Conference.deployed().then(function(instance) {
             sim = instance;
             $("#confAddress").html(sim.address);
 
             self.checkValues();
-            self.bindBuyTicketButton(); // Bind the buy ticket button
         }).catch(function(e) {
             console.log(e);
         });
+
     },
 
-    checkValues: function() {
+
+
+
+checkValues: function() {
+
         Conference.deployed().then(function(instance) {
-            sim = instance;
-            sim.quota.call().then(function(quota) { 
-                $("input#confQuota").val(quota);
-                return sim.organizer.call();
-            }).then(function(organizer){
+           sim = instance;
+	    console.log(sim);	
+            sim.quota.call().then( 
+            function(quota) { 
+            console.log(quota); 
+            $("input#confQuota").val(quota);
+            return sim.organizer.call();
+              }).then(
+              function(organizer){
                 $("input#confOrganizer").val(organizer);
                 return sim.numRegistrants.call();
-            }).then(function(num){
+              }).then(
+              function(num){
                 $("#numRegistrants").html(num.toNumber());
-            });
-        });
-    },
+              });
+	
+	});
+   },
 
-    changeQuota: function(newquota){
+   changeQuota: function(newquota){
         Conference.deployed().then(function(instance) {
-            sim = instance;
-            sim.changeQuota(newquota, {from: accounts[0], gas: 3000000}).then(function() {
+           sim = instance;
+        console.log(sim);   
+            sim.changeQuota(newquota,{from:accounts[0],gas:3000000}).then( 
+            function() {
                 return sim.quota.call(); 
-            }).then(function(quota){
-                var msgResult = quota == newquota ? "change successful" : "change failed";
-                $("#changeQuotaResult").html(msgResult);
-            });
-        });
-    },
+              }).then(
+              function(quota){
+                var msgResult;
+                if(quota == newquota){
+                    msgResult = "change sucessful";
 
-    bindBuyTicketButton: function() {
-        $("#buyTicketBtn").click(function() {
-            var senderAddress = $("#senderAddress").val();
-            var ticketPrice = web3.toWei(parseFloat($("#ticketPrice").val()), 'ether'); // Convert ether to wei
+                }else{
+                    msgResult = "change failed";
 
-            if (!web3.isAddress(senderAddress)) {
-                alert('请输入有效的以太坊地址');
-                return;
-            }
-
-            sim.buyTicket(senderAddress, {from: accounts[0], value: ticketPrice, gas: 3000000}, function(error, result) {
-                if (error) {
-                    console.error(error);
-                    alert('购票失败');
-                } else {
-                    console.log(result);
-                    alert('购票成功！');
                 }
-            });
-        });
-    }
-};
-
-// HMR - Hot Module Replacement
-if (module.hot) {
-    module.hot.accept();
-}
+                
+                $("#changeQuotaResult").html(msgResult);
+              });
+    
+    });
+   }
+};//loop for main

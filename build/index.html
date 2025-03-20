@@ -1,1 +1,143 @@
-<!DOCTYPE html> <html> <head> <title>Hotel Booking</title> <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel=stylesheet type=text/css> <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel=stylesheet type=text/css> <script src=http://code.jquery.com/jquery-1.9.1.min.js></script> <script src=./app.js></script> <style>body{background-image:url(https://img95.699pic.com/photo/40141/8282.gif_wh860.gif);background-size:cover;background-position:center;background-attachment:fixed;color:#fff;font-family:'Open Sans',sans-serif;margin:0;padding:20px;display:flex;flex-direction:column;align-items:center}h1{font-size:5em;margin:2em 0;color:#ff0}.welcome-text{font-size:4em;margin:.5em 0;display:flex;justify-content:center;align-items:center;font-family:Lato,sans-serif;font-weight:700;color:#fff}.section{font-size:1.8em;margin:.5em 0;display:flex;justify-content:center;align-items:center}button,input[type=text]{font-size:3em;margin-left:10px}button{padding:10px 20px;font-size:50px;border:none;outline:0;cursor:pointer;color:#fff;background-image:linear-gradient(to right,#3f51b5,#5c6773);transition:background-image .3s ease;cursor:pointer}button:hover{background-image:linear-gradient(to left,#3f51b5,#5c6773)}.wave{font-family:'Cabin Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:5.5em;color:transparent;background-image:linear-gradient(45deg,#fff,#f80707);-webkit-background-clip:text;background-clip:text;text-shadow:2px 2px 5px rgba(0,0,0,.3);animation:wave-animation 2s infinite linear,loading-animation 10s infinite linear alternate}@keyframes wave-animation{0%{background-position:0 bottom}100%{background-position:400px bottom}}@keyframes loading-animation{0%{background-size:200px 0}100%{background-size:200px 200px}}.button-container{position:relative;width:200px;height:70px;margin-top:6vh;overflow:hidden;border:1px solid;font-family:Lato,sans-serif;font-weight:300;transition:.5s;letter-spacing:1px;border-radius:8px;display:flex;justify-content:center;align-items:center}button.entry{width:100%;height:100%;font-family:Lato,sans-serif;font-weight:300;font-size:24px;letter-spacing:1px;font-weight:700;background:#000;-webkit-mask:url(https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png);mask:url(https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png);-webkit-mask-size:2300% 100%;mask-size:2300% 100%;border:none;color:#fff;cursor:pointer;-webkit-animation:ani2 .4s steps(11) forwards;animation:ani2 .4s steps(11) forwards;transition:transform .3s ease;display:flex;justify-content:center;align-items:center}button.entry:hover{-webkit-animation:ani .4s steps(11) forwards;animation:ani .4s steps(11) forwards;background:#fff;color:#000;transform:scale(1.1)}@-webkit-keyframes ani{from{-webkit-mask-position:0 0;mask-position:0 0}to{-webkit-mask-position:100% 0;mask-position:100% 0}}@keyframes ani{from{-webkit-mask-position:0 0;mask-position:0 0}to{-webkit-mask-position:100% 0;mask-position:100% 0}}@-webkit-keyframes ani2{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}@keyframes ani2{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}a{color:#00ff95}</style> </head> <body> <h1 class=wave>Hotel Booking</h1> <div class=welcome-text>Welcome here, you can begin your journey!</div> <div class=button-container> <button class=entry id=changeQuota>Entry</button> </div> <div class=section> Hotel numbers: <span id=numRegistrants>100</span> </div> <div id=bookingContent></div> <hr/> <script>document.getElementById("changeQuota").addEventListener("click",function(){window.location.href="http://127.0.0.1:8545/booking.html"})</script> <hr/> <script type="text/javascript" src="bundle.js"></script></body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hotel Booking</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100 ,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100 " rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js "></script>
+    <style>
+        body {
+            background-image: url('https://img95.699pic.com/photo/40141/8282.gif_wh860.gif ');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5em;
+            margin: 2em 0;
+            color: #ff0;
+        }
+        .welcome-text {
+            font-size: 4em;
+            margin: 0.5em 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Lato, sans-serif;
+            font-weight: 700;
+            color: #fff;
+        }
+        .section {
+            font-size: 1.8em;
+            margin: 0.5em 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 3em;
+            border: none;
+            outline: 0;
+            cursor: pointer;
+            color: #fff;
+            background-image: linear-gradient(to right, #3f51b5, #5c6773);
+            transition: background-image 0.3s ease;
+        }
+        button:hover {
+            background-image: linear-gradient(to left, #3f51b5, #5c6773);
+        }
+        .wave {
+            font-family: 'Cabin Condensed', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 5.5em;
+            color: transparent;
+            background-image: linear-gradient(45deg, #fff, #f80707);
+            background-clip: text;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: wave-animation 2s infinite linear;
+        }
+        @keyframes wave-animation {
+            0% { background-position: 0 bottom; }
+            100% { background-position: 400px bottom; }
+        }
+        .button-container {
+            position: relative;
+            width: 200px;
+            height: 70px;
+            margin-top: 6vh;
+            overflow: hidden;
+            border: 1px solid;
+            font-family: Lato, sans-serif;
+            font-weight: 300;
+            transition: 0.5s;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button.entry {
+            width: 100%;
+            height: 100%;
+            font-family: Lato, sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            background: #000;
+            mask: url('https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png ');
+            mask-size: 2300% 100%;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            animation: ani2 0.4s steps(11) forwards;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button.entry:hover {
+            animation: ani 0.4s steps(11) forwards;
+            background: #fff;
+            color: #000;
+            transform: scale(1.1);
+        }
+        @keyframes ani {
+            from { mask-position: 0 0; }
+            to { mask-position: 100% 0; }
+        }
+        @keyframes ani2 {
+            from { mask-position: 100% 0; }
+            to { mask-position: 0 0; }
+        }
+        a {
+            color: #00ff95;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="wave">Hotel Booking</h1>
+    <div class="welcome-text">Welcome here, you can begin your journey!</div>
+    <div class="button-container">
+        <button class="entry" id="changeQuota">Entry</button>
+    </div>
+    <div class="section">Hotel numbers: <span id="numRegistrants">100</span></div>
+    <div id="bookingContent"></div>
+    <script>
+        document.getElementById("changeQuota").addEventListener("click", function () {
+            window.location.href = "http://127.0.0.1:8080/booking.html ";
+        });
+    </script>
+</body>
+</html>
+
+

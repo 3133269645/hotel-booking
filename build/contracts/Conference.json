@@ -55,8 +55,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -69,8 +68,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -83,8 +81,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -103,8 +100,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -123,8 +119,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -137,8 +132,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -151,8 +145,7 @@
       "name": "buyTicket",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -201,7 +194,7 @@
   "sourceMap": "57:2299:0:-:0;;;451:205;8:9:-1;5:2;;;30:1;27;20:12;5:2;451:205:0;494:10;482:9;;:22;;;;;;;;;;;;;;;;;;522:3;514:5;:11;;;;552:1;535:14;:18;;;;577:13;563:11;:27;;;;57:2299;;;;;;",
   "deployedSourceMap": "57:2299:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;289:23;;8:9:-1;5:2;;;30:1;27;20:12;5:2;289:23:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;113:47;;8:9:-1;5:2;;;30:1;27;20:12;5:2;113:47:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;113:47:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1277:211;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1277:211:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1277:211:0;;;;;;;;;;;;;;;;;:::i;:::-;;166:62;;8:9:-1;5:2;;;30:1;27;20:12;5:2;166:62:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;166:62:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;83:24;;8:9:-1;5:2;;;30:1;27;20:12;5:2;83:24:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1494:690;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1494:690:0;;;:::i;:::-;;2190:164;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2190:164:0;;;:::i;:::-;;662:442;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;662:442:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;1110:161;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1110:161:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1110:161:0;;;;;;;;;;;;;;;;;:::i;:::-;;266:17;;8:9:-1;5:2;;;30:1;27;20:12;5:2;266:17:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;234:26;;8:9:-1;5:2;;;30:1;27;20:12;5:2;234:26:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;289:23;;;;:::o;113:47::-;;;;;;;;;;;;;;;;;:::o;1277:211::-;1358:9;;;;;;;;;;;1344:23;;:10;:23;;;1336:82;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1442:8;1428:11;:22;;;;1277:211;:::o;166:62::-;;;;;;;;;;;;;;;;;;;;;;:::o;83:24::-;;;;;;;;;;;;;:::o;1494:690::-;1557:9;;;;;;;;;;;1543:23;;:10;:23;;;1535:72;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1617:17;1637:27;:39;1665:10;1637:39;;;;;;;;;;;;;;;;;;;;;;;;;1617:59;;1715:1;1694:23;;:9;:23;;;;1686:60;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1756:11;1770:15;:26;1786:9;1770:26;;;;;;;;;;;;;;;;1756:40;;1823:1;1814:6;:10;1806:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1895:6;1878:4;1870:21;;;:31;;1862:75;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1955:9;1947:27;;:35;1975:6;1947:35;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1947:35:0;2004:9;1997:25;;;2015:6;1997:25;;;;;;;;;;;;;;;;;;2061:1;2032:15;:26;2048:9;2032:26;;;;;;;;;;;;;;;:30;;;;2072:14;;:16;;;;;;;;;;;;;;2147:1;2098:27;:38;2126:9;2098:38;;;;;;;;;;;;;;;;:51;;;;;;;;;;;;;;;;;;1494:690;;:::o;2190:164::-;2248:9;;;;;;;;;;;2234:23;;:10;:23;;;2226:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2336:9;;;;;;;;;;;2315:32;;;662:442;750:5;;733:14;;:22;725:57;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;813:11;;800:9;:24;792:96;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;928:9;898:15;:27;914:10;898:27;;;;;;;;;;;;;;;:39;;;;989:9;947:27;:39;975:10;947:39;;;;;;;;;;;;;;;;:51;;;;;;;;;;;;;;;;;;1036:14;;:16;;;;;;;;;;;;;1075:10;1067:30;;;1087:9;1067:30;;;;;;;;;;;;;;;;;;662:442;:::o;1110:161::-;1185:9;;;;;;;;;;;1171:23;;:10;:23;;;1163:75;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1256:8;1248:5;:16;;;;1110:161;:::o;266:17::-;;;;:::o;234:26::-;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\ncontract Conference {\n    address public organizer;\n    mapping(address => uint) public registrantsPaid;\n    mapping(address => address) public registrantsDefaultRecipient;\n    uint public numRegistrants;\n    uint public quota;\n    uint public ticketPrice; // 新增票价变量\n\n    event Deposit(address indexed _from, uint _amount);\n    event Refund(address indexed _to, uint _amount);\n\n    constructor() public {\n        organizer = msg.sender;\n        quota = 100;\n        numRegistrants = 0;\n        ticketPrice = 0.00001 ether; // 设置默认票价为1 ether，可以根据需要修改\n    }\n\n    function buyTicket(address recipient) public payable {\n        require(numRegistrants < quota, \"Registration is closed\");\n        require(msg.value == ticketPrice, \"Ticket price must be equal to or greater than the set price\");\n        registrantsPaid[msg.sender] = msg.value;\n        registrantsDefaultRecipient[msg.sender] = recipient; // 设置默认收获地址\n        numRegistrants++;\n        emit Deposit(msg.sender, msg.value);\n    }\n\n    function changeQuota(uint newQuota) public {\n        require(msg.sender == organizer, \"Only the organizer can change the quota\");\n        quota = newQuota;\n    }\n\n    function changeTicketPrice(uint newPrice) public {\n        require(msg.sender == organizer, \"Only the organizer can change the ticket price\");\n        ticketPrice = newPrice; // 允许组织者更改票价\n    }\n\n    function refundTicket() public {\n        require(msg.sender == organizer, \"Only the organizer can issue refunds\");\n        address recipient = registrantsDefaultRecipient[msg.sender];\n        require(recipient != address(0), \"No default recipient set\");\n        uint amount = registrantsPaid[recipient];\n        require(amount > 0, \"Invalid ticket purchase\");\n        require(address(this).balance >= amount, \"Insufficient balance for refund\");\n        payable(recipient).transfer(amount);\n        emit Refund(recipient, amount);\n        registrantsPaid[recipient] = 0;\n        numRegistrants--;\n        registrantsDefaultRecipient[recipient] = address(0); // 重置默认收获地址\n    }\n\n    function destroy() public {\n        require(msg.sender == organizer, \"Only the organizer can destroy the contract\");\n        selfdestruct(payable(organizer));\n    }\n}",
-  "sourcePath": "/usr/bin/conference/contracts/Conference.sol",
+  "sourcePath": "/home/xiaolangzi/dapp/hotel-booking/contracts/Conference.sol",
   "ast": {
     "absolutePath": "project:/contracts/Conference.sol",
     "exportedSymbols": {
@@ -6952,29 +6945,9 @@
     "name": "solc",
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
-  "networks": {
-    "1731057527297": {
-      "events": {},
-      "links": {},
-      "address": "0x732A8Cad83D53d310c7dF629BbB8dEbE2A19988e",
-      "transactionHash": "0x6df4896a91dbd5eb303be97ca633ef5bec293892f72a40b90017c9f532634aff"
-    },
-    "1731337156140": {
-      "events": {},
-      "links": {},
-      "address": "0x998c5d137785B5d641fec840094625E25526BA4c",
-      "transactionHash": "0x722bfac32dd48810b27b1cd190cf5c038f2370bddab2dad43165652d6bd96655"
-    },
-    "1732014851026": {
-      "events": {},
-      "links": {},
-      "address": "0xC744096581d3500D8a9dd5e6b74633951C479Abf",
-      "transactionHash": "0x5931e3ce3159b116cc00529b059812deb469bda82f2ee8869cf1fd959afbb989"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-11-19T11:16:25.618Z",
-  "networkType": "ethereum",
+  "updatedAt": "2025-03-13T01:22:03.898Z",
   "devdoc": {
     "methods": {}
   },
