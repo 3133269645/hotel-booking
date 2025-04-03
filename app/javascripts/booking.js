@@ -14,8 +14,8 @@ window.addEventListener('load', function() {
         console.warn("Using web3 detected from external source.");
         window.web3 = new Web3(web3.currentProvider);
     } else {
-        console.warn("No web3 detected. Falling back to http://127.0.0.1:7545.");
-        window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545")); // Ganache 本地网络
+        console.warn("No web3 detected. Falling back to http://127.0.0.1:8545.");
+        window.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545")); // Ganache 本地网络
     }
 
 
@@ -85,14 +85,18 @@ window.App = {
     // 新的预定函数，处理预定逻辑
     bookReservation: function(amount, date) {
         var self = this;
-        
+    
         // 显示交易处理中
         $("#changeQuotaResult").html("交易处理中...");
-    
+        
         // 调用合约进行预定交易
         Conference.deployed().then(function(instance) {
             sim = instance;
-            return sim.bookRoom(1, { from: accounts[0], value: web3.utils.toWei(amount, "ether"), gas: 3000000 });  // 使用bookRoom处理预定
+    
+            // 转换金额为以太
+            var ethAmount = web3.utils.toWei(amount.toString(), "ether"); // 将金额转换为以太单位
+    
+            return sim.bookRoom(1, { from: accounts[0], value: ethAmount, gas: 3000000 });  // 使用bookRoom处理预定
         }).then(function() {
             // 配额更新成功后，检查配额是否已更改
             return sim.availableRooms.call();

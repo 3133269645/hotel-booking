@@ -6,23 +6,39 @@
     <title>Hotel Booking Home</title>
     <link href="https://fonts.loli.net/css?family=Open+Sans:400,700,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/stylesheets/booking.css">  <!-- 确保引用路径正确 -->
+
 </head>
 <body>
     <h1 data-text="Hotel Booking Home">Hotel Booking Home</h1>
+
     <div class="image-container">
-        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.cQVQii7Z04oFTyAJx1pIUgHaE8?w=290&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');">
-            <a href="javascript:void(0);" class="button" data-amount="100" data-date="" onclick="openDatePicker(this)">预定: (100$)</a>
+        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.cQVQii7Z04oFTyAJx1pIUgHaE8?w=290&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="100" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 1</div>
         </div>
-        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.fzSWNz3OOsA_fClm_gKF9gHaHa?w=192&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');">
-            <a href="javascript:void(0);" class="button" data-amount="120" data-date="" onclick="openDatePicker(this)">预定: (120$)</a>
+        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.fzSWNz3OOsA_fClm_gKF9gHaHa?w=192&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="120" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 2</div>
         </div>
-        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.Gyw81yNB697cMxMhqnI3XAHaE7?w=270&h=192&c=7&r=0&o=5&dpr=1.3&pid=1.7');">
-            <a href="javascript:void(0);" class="button" data-amount="130" data-date="" onclick="openDatePicker(this)">预定: (130$)</a>
+        <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.Gyw81yNB697cMxMhqnI3XAHaE7?w=270&h=192&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="130" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 3</div>
         </div>
-        <div class="image-item" style="background-image: url('https://tse3-mm.cn.bing.net/th/id/OIP-C.crlK90C12-YnF0m0wN5fKwHaGv?w=237&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7');">
-            <a href="javascript:void(0);" class="button" data-amount="115" data-date="" onclick="openDatePicker(this)">预定: (115$)</a>
+        <div class="image-item" style="background-image: url('https://tse3-mm.cn.bing.net/th/id/OIP-C.crlK90C12-YnF0m0wN5fKwHaGv?w=237&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="115" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 4</div>
+        </div>
+        <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.cky85LU0_JR_IAYTuNdlnAHaEK?w=302&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="115" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 5</div>
+        </div>
+        <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.mC0fRiE10H3-fotymAhrBgHaEJ?w=308&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="115" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 6</div>
+        </div>
+        <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.U0ZMVmcFJAW98mN8xEfydwHaEJ?w=302&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="115" onclick="openDatePicker(this)">
+            <div class="info">介绍信息 7</div>
         </div>
     </div>
+    
+    
+
+</div>
+
 
     <!-- 日期选择框 (Modal) -->
     <div id="datePickerModal" style="display: none;"> <!-- 初始化时隐藏 -->
@@ -50,25 +66,27 @@
 
     <script>
         // 打开日期选择框的函数
-        function openDatePicker(button) {
-            var amount = button.getAttribute('data-amount');
-            // 设置该按钮的金额数据到Modal
+        function openDatePicker(imageElement) {
+            var amount = imageElement.getAttribute('data-amount'); // 获取金额数据
+            // 设置日期选择框显示
             document.getElementById('datePickerModal').style.display = 'flex'; 
-            // 为确认按钮绑定金额数据
+            // 将金额数据绑定到确认按钮
             document.getElementById('confirmDate').setAttribute('data-amount', amount);
-            document.getElementById('confirmDate').setAttribute('data-button', button);
+            document.getElementById('confirmDate').setAttribute('data-image-element', imageElement);
         }
 
         // 确认日期按钮的事件
         document.getElementById('confirmDate').addEventListener('click', function() {
-            var amount = this.getAttribute('data-amount');
-            var date = document.getElementById('datePicker').value;
-            var button = this.getAttribute('data-button');
+            var amount = this.getAttribute('data-amount'); // 获取金额数据
+            var date = document.getElementById('datePicker').value; // 获取日期
+            var imageElement = this.getAttribute('data-image-element'); // 获取图片元素
 
             if (date) {
-                // 调用合约交易逻辑
-                App.changeQuota(amount, date); // 执行合约的相关方法
-                closeDatePicker();
+                // 在这里执行合约操作，假设你要执行 App.changeQuota()
+                // App.changeQuota(amount, date); // 这里调用你合约的方法
+
+                alert('您已选择预定！金额: ' + amount + '，日期: ' + date);
+                closeDatePicker(); // 关闭日期选择框
             } else {
                 alert('请选择一个日期');
             }
@@ -76,13 +94,15 @@
 
         // 取消日期选择框
         document.getElementById('cancelDate').addEventListener('click', function() {
-            closeDatePicker();
+            closeDatePicker(); // 关闭日期选择框
         });
 
         // 关闭日期选择框
         function closeDatePicker() {
             document.getElementById('datePickerModal').style.display = 'none';
         }
+
     </script>
+
 </body>
 </html>
