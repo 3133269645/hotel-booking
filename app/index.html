@@ -6,6 +6,7 @@
     <title>Hotel Booking</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Roboto:wght@100&family=Cabin+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
 
     <!-- 引入 ethers.js 库 -->
@@ -34,13 +35,17 @@
         <img src="images/粘贴的图像.png" alt="Left Corner Image" class="corner-image-left">
     </a>
     
-    <!-- 登录成功的小窗口 -->
-    <div id="loginSuccessPopup" class="popup">
-        <div class="popup-content">
-            <h3>钱包连接成功！</h3>
-            <p>正在进入web3世界....</p>
-        </div>
+<!-- 登录成功的小窗口改为输入姓名 -->
+<div id="loginSuccessPopup" class="popup">
+    <div class="popup-content">
+        <h3>欢迎您，如何称呼？</h3>
+        <p>请输入您的姓名：</p>
+        <input type="text" id="usernameInput" style="padding: 8px; margin: 10px 0; width: 80%;">
+        <br>
+        <button id="enterButton" style="padding: 8px 16px; cursor: pointer;">进入</button>
     </div>
+</div>
+
         <!-- Load app.js before booking.js -->
 
 
@@ -68,7 +73,7 @@
                         const userAddress = accounts[0];
     
                         // 弹出提示框显示连接的地址
-                        alert("Connected with wallet: " + userAddress);
+                        alert("您已经成功连接了您的钱包，可以直接进入");
     
                         // 保存钱包地址到 localStorage
                         localStorage.setItem('walletAddress', userAddress);
@@ -79,25 +84,33 @@
     
                         // 设置延时隐藏小窗口并进行后续操作
                         setTimeout(() => {
-                            // 隐藏登录成功的小窗口
-                            popup.style.display = 'none';
-    
-                            // 创建 WebSocket 连接
-                            const socket = new WebSocket('ws://localhost:8545/ws');
-    
-                            // WebSocket 连接成功时触发
-                            socket.onopen = function() {
-                                console.log("WebSocket connection established.");
-                                // 跳转到 booking 页面
-                                window.location.href = "booking.html";  
-                            };
-    
-                            // WebSocket 连接出错时触发
-                            socket.onerror = function(error) {
-                                console.error("WebSocket error:", error);
-                                alert("WebSocket connection failed.");
-                            };
-                        }, 3000); // 延迟3秒后执行
+                            // 不隐藏 popup，而是显示输入框
+                            const popup = document.getElementById('loginSuccessPopup');
+                            popup.style.display = 'flex';
+
+                            const enterButton = document.getElementById('enterButton');
+                            enterButton.addEventListener('click', () => {
+                                const username = document.getElementById('usernameInput').value.trim();
+                                if (!username) {
+                                    alert("请输入您的姓名");
+                                    return;
+                                }
+                                // 保存用户名
+                                localStorage.setItem('username', username);
+
+                                // 可选：WebSocket 可省略或保留
+                                const socket = new WebSocket('ws://localhost:8545/ws');
+                                socket.onopen = function () {
+                                    console.log("WebSocket connection established.");
+                                    window.location.href = "booking.html";
+                                };
+                                socket.onerror = function (error) {
+                                    console.error("WebSocket error:", error);
+                                    alert("WebSocket connection failed.");
+                                };
+                            });
+                        }, 1000); // 显示得稍微快一点更自然
+                        // 延迟3秒后执行
     
                     } catch (error) {
                         // 捕获连接钱包时的错误

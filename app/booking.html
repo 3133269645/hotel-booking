@@ -10,7 +10,6 @@
 </head>
 <body>
     <h1 data-text="Hotel Booking Home">Hotel Booking Home</h1>
-
     <div class="image-container">
         <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.cQVQii7Z04oFTyAJx1pIUgHaE8?w=290&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="0.1" onclick="openDatePicker(this)">
             <div class="info">0.1$</div>
@@ -37,6 +36,12 @@
 </div>
 
 <div id="changeQuotaResult"></div>
+
+<!-- 显示姓名的小框 -->
+<div id="userInfo" class="user-info">
+    <span id="userNameDisplay">欢迎，游客！</span>
+    <button id="changeNameButton">修改</button>
+</div>
 
 <!-- 弹出框 (Modal) -->
 <div id="popupModal" class="popup-modal" style="display: none;">
@@ -65,6 +70,24 @@
 
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 获取保存的用户名，如果有的话显示
+            const userName = localStorage.getItem('username');
+            if (userName) {
+                document.getElementById("userNameDisplay").textContent = `${userName}`;
+            }
+
+            // 绑定修改姓名按钮
+            document.getElementById("changeNameButton").addEventListener("click", function () {
+                const newName = prompt("请输入您的姓名：");
+                if (newName && newName.trim()) {
+                    // 更新用户名并保存
+                    localStorage.setItem('username', newName.trim());
+                    document.getElementById("userNameDisplay").textContent = `${newName.trim()}`;
+                }
+            });
+        });
+
         function showPopup(message) {
             console.log("showPopup called with message:", message); // 调试信息
             document.getElementById('popupMessage').innerText = message;
@@ -116,7 +139,6 @@
         });
 
 
-        // 取消日期选择框
         document.getElementById('cancelDate').addEventListener('click', function() {
             document.getElementById('datePickerModal').style.display = 'none'; // 关闭日期选择框
         });
@@ -195,9 +217,8 @@
 
         window.App = {
         start: function(callback) {
-            var self = this;
 
-            // 使用 Ganache CLI 提供的地址和 RPC URL 进行初始化
+            var self = this;
             const providerUrl = "http://127.0.0.1:8545";  // Ganache CLI 默认的 RPC URL
             window.provider = new ethers.providers.JsonRpcProvider(providerUrl);
 
@@ -240,7 +261,6 @@
                         console.error("No address found for network ID:", networkId);
                         return;
                     }
-
                     // 调用 initializeConference 方法，传递 ABI 和合约地址
                     self.initializeConference(conference_artifacts.abi, address, callback);  // 加载合约并初始化
                 })
@@ -254,19 +274,15 @@
 
             // 确保初始化方法在 App 对象内
             console.log("Initializing contract...");
-
             // 创建合约实例
             const signer = window.provider.getSigner();
             const conferenceContract = new ethers.Contract(contractAddress, abi, signer);
-
             // 保存合约实例
             self.conferenceContract = conferenceContract;
-
             // 直接获取合约地址，不需要使用 then()
             const address = conferenceContract.address;
             console.log("Contract Address:", address);
-
-            // 使用 jQuery 更新页面内容，确保 jQuery 已经加载
+          // 使用 jQuery 更新页面内容，确保 jQuery 已经加载
             $("#confAddress").html(address);
 
             // 执行回调
@@ -334,8 +350,6 @@
                 showPopup("发生错误，请稍后再试。");
             }
         }
-
-
     };
     </script>
 </body>
