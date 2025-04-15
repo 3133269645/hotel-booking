@@ -1,130 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hotel Booking</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Roboto:wght@100&family=Cabin+Condensed:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/app.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hotel Booking</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Roboto:wght@100&family=Cabin+Condensed:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="stylesheets/app.css">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+        <!-- 引入 ethers.js 库 -->
+        <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    </head>
+    <body>
+        <!-- 背景特效 --> 
+        <div class="dajianshi">
+            <div class="sun"></div>
+            <div class="moon"></div>
+        </div>
+        <div class="container">
+            <div class="bubbles">
+                <span style="--i:07;"></span>
+                <span style="--i:16;"></span>
+                <span style="--i:19;"></span>
+                <span style="--i:08;"></span>
+                <span style="--i:12;"></span>
+                <span style="--i:01;"></span>
+                <span style="--i:21;"></span>
+                <span style="--i:17;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:03;"></span>
+                <span style="--i:22;"></span>
+                <span style="--i:24;"></span>
+                <span style="--i:25;"></span>
+                <span style="--i:11;"></span>
+                <span style="--i:04;"></span>
+                <span style="--i:27;"></span>
+                <span style="--i:05;"></span>
+                <span style="--i:14;"></span>
+                <span style="--i:26;"></span>
+                <span style="--i:09;"></span>
+                <span style="--i:10;"></span>
+                <span style="--i:06;"></span>
+                <span style="--i:28;"></span>
+                <span style="--i:15;"></span>
+                <span style="--i:32;"></span>
+                <span style="--i:29;"></span>
+                <span style="--i:31;"></span>
+                <span style="--i:36;"></span>
+                <span style="--i:38;"></span>
+                <span style="--i:37;"></span>
+                <span style="--i:33;"></span>
+                <span style="--i:34;"></span>
+                <span style="--i:39;"></span>
+                <span style="--i:35;"></span>
+                <span style="--i:13;"></span>
+                <span style="--i:18;"></span>
+                <span style="--i:01;"></span>
+                <span style="--i:20;"></span>
+                <span style="--i:40;"></span>
+                <span style="--i:41;"></span>
+                <span style="--i:42;"></span>
+                <span style="--i:43;"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Login Button -->
+        <button id="loginButton">Login with your wallet</button>
+        <h1 id="booking-title">Booking Hotel</h1>
+        <div class="welcome-text">Welcome here, you can begin your journey!</div>
+
+        <!-- Sci-Fi Bar -->
+        <div class="sci-fi-bar">
+            <span>608lab×技大链协xiaolangzi</span>
+        </div>
 
 
-    <!-- 引入 ethers.js 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-</head>
-<body>
-    <!-- Login Button -->
-    <button id="loginButton">Login with your wallet</button>
+        <div class="section">Hotel numbers: <span id="numRegistrants">10000</span></div>
+        <div id="bookingContent"></div>
 
-    <h1 class="wave">Hotel Booking</h1>
-    <div class="welcome-text">Welcome here, you can begin your journey!</div>
-
-    <!-- Sci-Fi Bar -->
-    <div class="sci-fi-bar">
-        <span>608lab×技大链协xiaolangzi</span>
+        <!-- Corner images -->
+        <a href="http://example.com/right-page" target="_blank">
+            <img src="images/截图_2025-03-19_14-11-24.png" alt="Right Corner Image" class="corner-image-right">
+        </a>
+        <a href="https://www.wanglab.fun/" target="_blank">
+            <img src="images/粘贴的图像.png" alt="Left Corner Image" class="corner-image-left">
+        </a>
+        
+    <!-- 登录成功的小窗口改为输入姓名 -->
+    <div id="loginSuccessPopup" class="popup">
+        <div class="popup-content">
+            <h3>欢迎您，如何称呼？</h3>
+            <p>请输入您的姓名：</p>
+            <input type="text" id="usernameInput" style="padding: 8px; margin: 10px 0; width: 80%;">
+            <br>
+            <button id="enterButton" style="padding: 8px 16px; cursor: pointer;">进入</button>
+            <button id="cancelButton" style="padding: 8px 16px; cursor: pointer; margin-left: 10px;">取消</button>
+        </div>
     </div>
 
-    <div class="section">Hotel numbers: <span id="numRegistrants">10000</span></div>
-    <div id="bookingContent"></div>
+            <!-- 标题特效 -->
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // 获取标题元素
+                    var title = document.getElementById('booking-title');
+                    var text = title.innerText;
+                    var letters = text.split(''); // 将标题拆分成字母
 
-    <!-- Corner images -->
-    <a href="http://example.com/right-page" target="_blank">
-        <img src="images/截图_2025-03-19_14-11-24.png" alt="Right Corner Image" class="corner-image-right">
-    </a>
-    <a href="https://www.wanglab.fun/" target="_blank">
-        <img src="images/粘贴的图像.png" alt="Left Corner Image" class="corner-image-left">
-    </a>
-    
-<!-- 登录成功的小窗口改为输入姓名 -->
-<div id="loginSuccessPopup" class="popup">
-    <div class="popup-content">
-        <h3>欢迎您，如何称呼？</h3>
-        <p>请输入您的姓名：</p>
-        <input type="text" id="usernameInput" style="padding: 8px; margin: 10px 0; width: 80%;">
-        <br>
-        <button id="enterButton" style="padding: 8px 16px; cursor: pointer;">进入</button>
-    </div>
-</div>
+                    title.innerHTML = ''; // 清空标题
 
-        <!-- Load app.js before booking.js -->
+                    // 将每个字母包裹在span中
+                    letters.forEach(function(letter) {
+                        var span = document.createElement('span');
+                        span.innerText = letter;
+                        title.appendChild(span);
+                    });
 
+                    var spans = title.querySelectorAll('span');
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // 为右上角图片添加点击事件，点击后触发缩小效果
-            document.querySelector(".corner-image-right").addEventListener("click", function () {
-                this.classList.add("shrink");
-            });
-    
-            // 为左上角图片添加点击事件，点击后触发缩小效果
-            document.querySelector(".corner-image-left").addEventListener("click", function () {
-                this.classList.add("shrink");
-            });
-    
-            // 为登录按钮添加点击事件
-            document.getElementById("loginButton").addEventListener("click", async function () {
-                // 检查是否安装了 MetaMask
-                if (typeof window.ethereum !== 'undefined') {
-                    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    
-                    try {
-                        // 请求用户钱包地址
-                        const accounts = await provider.send("eth_requestAccounts", []);
-                        const userAddress = accounts[0];
-    
-                        // 弹出提示框显示连接的地址
-                        alert("您已经成功连接了您的钱包，可以直接进入");
-    
-                        // 保存钱包地址到 localStorage
-                        localStorage.setItem('walletAddress', userAddress);
-    
-                        // 显示登录成功的小窗口
-                        const popup = document.getElementById('loginSuccessPopup');
-                        popup.style.display = 'flex';
-    
-                        // 设置延时隐藏小窗口并进行后续操作
-                        setTimeout(() => {
-                            // 不隐藏 popup，而是显示输入框
+                    // 文字破碎并重组的动画
+                    setTimeout(function() {
+                        spans.forEach(function(span, i) {
+                            span.style.animation = `breakAnimation 2s ease-in-out ${i * 0.1}s forwards`; // 动画延迟
+                        });
+                    }, 100);
+
+                    // 动画完成后添加重组效果
+                    setTimeout(function() {
+                        spans.forEach(function(span) {
+                            span.classList.add('reassembled');
+                        });
+                    }, 3000);  // 设置为动画时间加上延迟时间
+                });
+
+            </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // 为右上角图片添加点击事件，点击后触发缩小效果
+                document.querySelector(".corner-image-right").addEventListener("click", function () {
+                    this.classList.add("shrink");
+                });
+        
+                // 为左上角图片添加点击事件，点击后触发缩小效果
+                document.querySelector(".corner-image-left").addEventListener("click", function () {
+                    this.classList.add("shrink");
+                });
+                let socket; // 定义 WebSocket 变量
+                // 为登录按钮添加点击事件
+                document.getElementById("loginButton").addEventListener("click", async function () {
+                    // 检查是否安装了 MetaMask
+                    if (typeof window.ethereum !== 'undefined') {
+                        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        
+                        try {
+                            // 请求用户钱包地址
+                            const accounts = await provider.send("eth_requestAccounts", []);
+                            const userAddress = accounts[0];
+        
+                            // 弹出提示框显示连接的地址
+                            alert("您已经成功连接了您的钱包，可以直接进入");
+        
+                            // 保存钱包地址到 localStorage
+                            localStorage.setItem('walletAddress', userAddress);
+        
+                            // 显示登录成功的小窗口
                             const popup = document.getElementById('loginSuccessPopup');
                             popup.style.display = 'flex';
+        
+                            // 设置延时隐藏小窗口并进行后续操作
+                            setTimeout(() => {
+                                // 不隐藏 popup，而是显示输入框
+                                const popup = document.getElementById('loginSuccessPopup');
+                                popup.style.display = 'flex';
 
-                            const enterButton = document.getElementById('enterButton');
-                            enterButton.addEventListener('click', () => {
-                                const username = document.getElementById('usernameInput').value.trim();
-                                if (!username) {
-                                    alert("请输入您的姓名");
-                                    return;
-                                }
-                                // 保存用户名
-                                localStorage.setItem('username', username);
+                                const enterButton = document.getElementById('enterButton');
+                                enterButton.addEventListener('click', () => {
+                                    const username = document.getElementById('usernameInput').value.trim();
+                                    if (!username) {
+                                        alert("请输入您的姓名");
+                                        return;
+                                    }
+                                    // 保存用户名
+                                    localStorage.setItem('username', username);
 
-                                // 可选：WebSocket 可省略或保留
-                                const socket = new WebSocket('ws://localhost:8545/ws');
-                                socket.onopen = function () {
-                                    console.log("WebSocket connection established.");
-                                    window.location.href = "booking.html";
-                                };
-                                socket.onerror = function (error) {
-                                    console.error("WebSocket error:", error);
-                                    alert("WebSocket connection failed.");
-                                };
-                            });
-                        }, 1000); // 显示得稍微快一点更自然
-                        // 延迟3秒后执行
-    
-                    } catch (error) {
-                        // 捕获连接钱包时的错误
-                        console.error("Error connecting to wallet:", error);
-                        alert("Failed to connect to wallet.");
+                                    // 可选：WebSocket 可省略或保留
+                                    if (!socket || socket.readyState === WebSocket.CLOSED) {
+                                        socket = new WebSocket('ws://localhost:8545/ws');
+                                        socket.onopen = function () {
+                                            console.log("WebSocket connection established.");
+                                            window.location.href = "booking.html";
+                                        };
+                                        socket.onerror = function (error) {
+                                            console.error("WebSocket error:", error);
+                                            alert("WebSocket connection failed.");
+                                        };
+                                    } else {
+                                        console.log("WebSocket is already connected.");
+                                    }    
+                    });
+
+                                const cancelButton = document.getElementById('cancelButton');
+                                cancelButton.addEventListener('click', () => {
+                                    // 关闭弹窗并清空输入框
+                                    popup.style.display = 'none';
+                                    document.getElementById('usernameInput').value = '';
+                                });
+                            }, 1000); // 显示得稍微快一点更自然
+                            // 延迟3秒后执行
+        
+                        } catch (error) {
+                            // 捕获连接钱包时的错误
+                            console.error("Error connecting to wallet:", error);
+                            alert("Failed to connect to wallet.");
+                        }
+                    } else {
+                        // 提示用户安装 MetaMask
+                        alert("MetaMask is not installed. Please install MetaMask.");
                     }
-                } else {
-                    // 提示用户安装 MetaMask
-                    alert("MetaMask is not installed. Please install MetaMask.");
-                }
+                });
             });
-        });
-    </script>
-    
-    
-</body>
-</html>
+        </script>
+        
+        
+    </body>
+    </html>

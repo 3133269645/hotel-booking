@@ -46,6 +46,21 @@ window.addEventListener('load', function() {
                 alert('请选择一个日期');
             }
         });
+
+        // 搜索按钮点击事件
+        const searchButton = document.getElementById('search');
+        if (searchButton) {
+            searchButton.addEventListener('click', function () {
+                const query = document.getElementById('inpt_search').value.trim();
+                if (query) {
+                    alert(`搜索功能尚未实现，但您输入了: ${query}`);
+                } else {
+                    alert('请输入搜索内容');
+                }
+            });
+        } else {
+            console.error("Element with ID 'search' not found.");
+        }
     });
 });
 
@@ -53,3 +68,24 @@ window.addEventListener('load', function() {
 function closeDatePicker() {
     $("#datePickerModal").hide();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('inpt_search');
+    if (!searchInput) {
+        console.warn('Element with ID "inpt_search" not found.');
+        return;
+    }
+
+    const searchLabel = searchInput.parentElement;
+
+    searchInput.addEventListener('focus', function () {
+        searchLabel.classList.add('active');
+    });
+
+    searchInput.addEventListener('blur', function () {
+        if (searchInput.value.trim().length === 0) {
+            searchLabel.classList.remove('active');
+        }
+    });
+});
+

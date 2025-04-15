@@ -9,42 +9,6 @@
 
 </head>
 <body>
-    <!-- 添加搜索框 -->
-    <div class="search">
-        <label class="search-label" for="inpt_search">
-            <input id="inpt_search" type="text" placeholder="搜索..." />
-        </label>
-    </div>
-      <!-- 星星背景 -->
-  <div class="stars">
-    <!-- 使用JavaScript动态生成星星 -->
-  </div>
-  
-  <script>
-    // 动态生成星星
-    const starsContainer = document.querySelector('.stars');
-
-    for (let i = 0; i < 150; i++) { // 增加星星数量
-        const star = document.createElement('div');
-        star.classList.add('star');
-
-        // 随机位置
-        const size = Math.random() * 3 + 1; // 随机星星大小
-        const x = Math.random() * 100 + 'vw'; // 随机X轴位置
-        const y = Math.random() * 100 + 'vh'; // 随机Y轴位置
-
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        star.style.left = x;
-        star.style.top = y;
-
-        // 给每颗星星设置动画的路径
-        star.style.setProperty('--x', Math.random() * 200 - 100 + 'vw');
-        star.style.setProperty('--y', Math.random() * 200 - 100 + 'vh');
-
-        starsContainer.appendChild(star);
-    }
-  </script>
     <h1 data-text="Hotel Booking Home">Hotel Booking Home</h1>
     <div class="image-container">
         <div class="image-item" style="background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.cQVQii7Z04oFTyAJx1pIUgHaE8?w=290&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7');" data-amount="0.1" onclick="openDatePicker(this)">
@@ -255,15 +219,8 @@
         start: function(callback) {
 
             var self = this;
-            const providerUrl = "http://localhost:8546";  // 使用 localhost
+            const providerUrl = "http://127.0.0.1:8545";  // Ganache CLI 默认的 RPC URL
             window.provider = new ethers.providers.JsonRpcProvider(providerUrl);
-
-            // 验证连接是否成功
-            window.provider.getBlockNumber().then(blockNumber => {
-                console.log("当前区块号:", blockNumber);
-            }).catch(err => {
-                console.error("无法获取区块号:", err);
-            });
 
             // 获取账户信息
             window.provider.listAccounts().then(function(accs) {

@@ -1,10 +1,5 @@
 /* styles.css */
 body {
-    background-image: url('https://c.wallhere.com/photos/0d/d4/ocean_wood_blue_light_sunset_sea_sky_sun-943513.jpg!d');
-    background-size: cover; /* 使背景图片完全覆盖页面 */
-    background-position: center; /* 将背景图片居中 */
-    background-attachment: fixed; /* 固定背景图片 */
-    color: #ffffffcc;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 20px;
@@ -13,8 +8,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    filter: brightness(1.2); /* 使背景图片稍微变亮 */
-    overflow: hidden; /* 确保滚动的内容不超出页面 */
+    background-color: #000000;  
 }
 
 h1 {
@@ -29,7 +23,7 @@ h1 {
     transform: translateX(-50%);
     width: auto;
     white-space: nowrap;
-    color: rgb(218, 24, 144);
+    color: rgb(245, 6, 10);
 }
 
 h1::after {
@@ -53,22 +47,9 @@ h1::after {
 }
 
 p {
-    font-size: 3em;
-    margin: 1em 0;
-}
-
-a {
     font-size: 2em;
-    color: #fff;
-    text-decoration: none;
-    background-color: #3f51b5;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-a:hover {
-    background-color: #5c6773;
+    margin: 1em 0;
+    color: black;
 }
 
 
@@ -130,7 +111,6 @@ a:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7); /* 更加深的半透明背景 */
-    z-index: 9999; /* 确保显示在其他内容之上 */
     justify-content: center;
     align-items: center;
     display: flex;
@@ -165,7 +145,7 @@ a:hover {
     padding: 12px;
     margin-bottom: 20px;
     border-radius: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd;
     font-size: 24px;
     background-color: #fff;
     color: #333;
@@ -274,7 +254,7 @@ a:hover {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: linear-gradient(145deg, #040404, #012d2b);
+    background:  linear-gradient(135deg, rgba(243, 111, 246, 0.8), rgba(106, 13, 134, 0.8));
     color: white;
     padding: 15px 25px;
     border-radius: 15px;
@@ -297,7 +277,7 @@ a:hover {
     border: 2px solid white;
     color: white;
     padding: 5px 10px;
-    font-size: 10px;
+    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -305,4 +285,134 @@ a:hover {
 
 #changeNameButton:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 搜索框动态效果样式 */
+.search {
+    display: inline-block;
+    position: absolute;
+    top: 150px; /* 调整到用户信息框的下面 */
+    right: 20px;
+    height: 35px;
+    width: 35px;
+    box-sizing: border-box;
+    margin: 0px 6px 7px 0px;
+    padding: 7px 9px 0px 9px;
+    border: 3px solid #fdfbfb;
+    border-radius: 25px;
+    transition: all 200ms ease;
+    cursor: text;
+    z-index: 10; /* 确保在最上层 */
+}
+
+.search:after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    right: -5px;
+    top: 21px;
+    background: #f2efef;
+    border-radius: 3px;
+    transform: rotate(-45deg);
+    transition: all 200ms ease;
+}
+
+.search.active,
+.search:hover {
+    width: 200px;
+    margin-right: 0px;
+}
+
+.search.active:after,
+.search:hover:after {
+    height: 0px;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #FFFFFF;
+    background: transparent;
+    outline-width: 0px;
+}
+
+.search:after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    right: -5px;
+    top: 21px;
+    background: #f2efef;
+    border-radius: 3px;
+    transform: rotate(-45deg);
+    transition: all 200ms ease;
+}
+
+.search.active,
+.search:hover {
+    width: 200px;
+    margin-right: 0px;
+}
+
+.search.active:after,
+.search:hover:after {
+    height: 0px;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #FFFFFF;
+    background: transparent;
+    outline-width: 0px;
+}
+
+
+/* 星星背景样式 */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* 确保星星在黑洞下方 */
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: starAnimation 15s infinite linear, starFlicker 4s infinite ease-in-out; /* 将运动动画时间从 5s 调整为 15s */
+}
+
+/* 星星运动动画 */
+@keyframes starAnimation {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(var(--x), var(--y));
+    }
+}
+
+/* 星星闪烁动画 */
+@keyframes starFlicker {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
 }
